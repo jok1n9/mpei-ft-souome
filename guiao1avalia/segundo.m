@@ -7,11 +7,8 @@ j=0;    %variavel
 l=0;
 estraga=0;                                  %varivael2
 for f=1: N
-    peca1= rand(n);                         %8 numeros entre 0 e 1
-    peca2= rand(n);                         %8 numeros entre 0 e 1 
-    pmontagem1= rand(n);                    %8 numeros entre 0 e 1
     for i=0 :n
-        if (peca1(i+1)<p1)|| (peca2(i+1)<p2)|| (pmontagem1(i+1)<pmontagem)  %se algum dos objetos estiver estragado ou o processo de montagem correr mal entra no ciclo
+        if (rand<p1)|| (rand <p2)|| (rand<pmontagem)  %se algum dos objetos estiver estragado ou o processo de montagem correr mal entra no ciclo
             estraga= estraga+1;             %adiciona um aos estragados
         end
     end 
@@ -21,4 +18,4 @@ for f=1: N
     end
     estraga=0;                              %inicializa o numero de objeto de estragados a 0 para a próxima experiência
 end
-probsimulacao= l/j;                         %prob simulação
+nmedtoys= l/j;                         %prob simulação

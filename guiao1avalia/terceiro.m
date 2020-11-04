@@ -7,11 +7,11 @@ j=0;                                        %variavel
 estraga=0;                                  %varivael2
 for f=1: N
     for i=0 :n
-        if (rand <p1)|| (rand <p2)|| (rand <pmontagem)  %se algum dos objetos estiver estragado ou o processo de montagem correr mal entra no ciclo
+        if (rand<p1)|| (rand<p2)|| (rand<pmontagem)  %se algum dos objetos estiver estragado ou o processo de montagem correr mal entra no ciclo
             estraga= estraga+1;             %adiciona um aos estragados
         end
     end 
-    if estraga>=1
+    if estraga==0
         j=j+1;                              %número de vezes em que a condição A se verifica
     end
     estraga=0;                              %inicializa o numero de objeto de estragados a 0 para a próxima experiência
