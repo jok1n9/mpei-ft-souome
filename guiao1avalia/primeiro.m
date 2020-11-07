@@ -6,7 +6,7 @@ n=8;                                        %numero de brinquedos na caixa
 j=0;                                        %variavel
 estraga=0;                                  %varivael2
 for f=1: N
-    for i=0 :n
+    for i=1 :n
         if (rand <p1)|| (rand <p2)|| (rand <pmontagem)  %se algum dos objetos estiver estragado ou o processo de montagem correr mal entra no ciclo
             estraga= estraga+1;             %adiciona um aos estragados
         end

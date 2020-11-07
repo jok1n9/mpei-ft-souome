@@ -5,7 +5,7 @@ j=0;    %variavel
 l=0;
 estraga=0;                                  %varivael2
 for f=1: N
-    for i=0 :n
+    for i=1 :n
         if (rand<pmontagem)  %se algum dos objetos estiver estragado ou o processo de montagem correr mal entra no ciclo
             estraga= estraga+1;             %adiciona um aos estragados
         end
