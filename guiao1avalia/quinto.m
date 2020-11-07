@@ -1,4 +1,4 @@
-N= 1e4;                                    %numero de experiencias
+N= 1e6;                                    %numero de experiencias
 p1=0.002;                                    %probabilidade de estragar peça
 p2=0.005;                                     %probabilidade de estragar peca2
 pmontagem= 0.01;                            %probabilidade de montagem                                        %numero de brinquedos na caixa

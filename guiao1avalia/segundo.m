@@ -1,6 +1,4 @@
-N= 1e4;                                    %numero de experiencias
-p1=0.002;                                    %probabilidade de estragar peça
-p2=0.005;                                     %probabilidade de estragar peca2
+N= 1e6;                                    %numero de experiencias
 pmontagem= 0.01;                             %probabilidade de montagem
 n=8;                                        %numero de brinquedos na caixa
 j=0;    %variavel
@@ -8,7 +6,7 @@ l=0;
 estraga=0;                                  %varivael2
 for f=1: N
     for i=0 :n
-        if (rand<p1)|| (rand <p2)|| (rand<pmontagem)  %se algum dos objetos estiver estragado ou o processo de montagem correr mal entra no ciclo
+        if (rand<pmontagem)  %se algum dos objetos estiver estragado ou o processo de montagem correr mal entra no ciclo
             estraga= estraga+1;             %adiciona um aos estragados
         end
     end 
