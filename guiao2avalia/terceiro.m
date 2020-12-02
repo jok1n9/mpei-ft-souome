@@ -18,7 +18,7 @@ counts= accumarray(idc, ones(size(idc)));
 M= cell(pD, 2);
 for i=1:pD
     M(i,1)=Mpu(i);  %aloca as palavras não repetidas
-    M(i,2)= num2cell(counts(i)/10e5); %aloca a probabilidade de se repetirem no array original
+    M(i,2)= num2cell(counts(i)); %aloca a probabilidade de se repetirem no array original
 end
 f=cell(5,2);%5 palavras mais usadas e probabilidade
 M=sortrows(M,2); % ordena as probabilidades
@@ -37,34 +37,34 @@ a=0;
 h=intersect(g, Mpu);%interseta g com as palavras geradas
 for i=1: length(Mpu)    
     if ismember(M(i,1), h)==1%se existir uma palavra em M
-        a=a+cell2mat(M(i,2)); %somamos a probabilidade dessa palavra
+        a=a+(cell2mat(M(i,2))/10e5); %somamos a probabilidade dessa palavra
     end
 end
-intersect(h, M(1));
-sort(M(1));
-ca=1;
+
 pa=0;
 pm=0;
-po=0;
 pr=0;
-while(Mpu{ca}(1)== 'a')
-    pa=cell2mat(M(ca,2))+pa;
-    ca=ca+1;
-end
-while(Mpu{ca}(1)== 'm')
-    pm=cell2mat(M(ca,2))+pm;
-    ca=ca+1;
-end
-while(Mpu{ca}(1)== 'o')
-    po=cell2mat(M(ca,2))+po;
-    ca=ca+1;
-end
-while(Mpu{ca}(1)== 'r'&& length(Mpu)~=i)
-    pr=cell2mat(M(ca,2))+pr;
-    ca=ca+1;
-end
+po=0;
 
-
+for i=1: length(Mpu)    
+    if ismember(M(i,1), h)==1 && M{i,1}(1)== 'a' %se existir uma palavra em M e a primeira letra for a
+        pa=pa+cell2mat(M(i,2)); %somamos o numero de palavras começadas por a
+    end
+    if ismember(M(i,1), h)==1 && M{i,1}(1)== 'm' %se existir uma palavra em M e a primeira letra for m
+        pm=pm+cell2mat(M(i,2)); %somamos o numero de palavras começadas por m
+    end
+    if ismember(M(i,1), h)==1 && M{i,1}(1)== 'o' %se existir uma palavra em M e a primeira letra for o
+        po=po+cell2mat(M(i,2)); %somamos o numero de palavras começadas por o
+    end
+    if ismember(M(i,1), h)==1 && M{i,1}(1)== 'r' %se existir uma palavra em M e a primeira letra for r
+        pr=pr+cell2mat(M(i,2)); %somamos o numero de palavras começadas por r
+    end
+end
+pt= pa+pm+po+pr; % obter o numero de palavras totais
+pa= pa/pt;%probabilidades de começar em a e com as limitações
+pm= pm/pt;
+po= po/pt;
+pr= pr/pt;
 
 
 

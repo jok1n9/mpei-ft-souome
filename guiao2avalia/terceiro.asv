@@ -18,7 +18,7 @@ counts= accumarray(idc, ones(size(idc)));
 M= cell(pD, 2);
 for i=1:pD
     M(i,1)=Mpu(i);  %aloca as palavras não repetidas
-    M(i,2)= num2cell(counts(i)/10e5); %aloca a probabilidade de se repetirem no array original
+    M(i,2)= num2cell(counts(i)); %aloca a probabilidade de se repetirem no array original
 end
 f=cell(5,2);%5 palavras mais usadas e probabilidade
 M=sortrows(M,2); % ordena as probabilidades
@@ -37,34 +37,34 @@ a=0;
 h=intersect(g, Mpu);%interseta g com as palavras geradas
 for i=1: length(Mpu)    
     if ismember(M(i,1), h)==1%se existir uma palavra em M
-        a=a+cell2mat(M(i,2)); %somamos a probabilidade dessa palavra
+        a=a+(cell2mat(M(i,2))/10e5); %somamos a probabilidade dessa palavra
     end
 end
 
-sort(M(1));
-ca=1;
 pa=0;
 pm=0;
-po=0;
 pr=0;
-while(Mpu{ca}(1)== 'a')
-    pa=cell2mat(M(ca,2))+pa;
-    ca=ca+1;
-end
-while(Mpu{ca}(1)== 'm')
-    pm=cell2mat(M(ca,2))+pm;
-    ca=ca+1;
-end
-while(Mpu{ca}(1)== 'o')
-    po=cell2mat(M(ca,2))+po;
-    ca=ca+1;
-end
-while(Mpu{ca}(1)== 'r'||)
-    pr=cell2mat(M(ca,2))+pr;
-    ca=ca+1;
-end
+po=0;
 
-
+for i=1: length(Mpu)    
+    if ismember(M(i,1), h)==1 && M{i,1}(1)== 'a' %se existir uma palavra em M e a primeira letra for a
+        pa=pa+cell2mat(M(i,2)); %somamos o numero de palavras 
+    end
+    if ismember(M(i,1), h)==1 && M{i,1}(1)== 'm' %se existir uma palavra em M
+        pm=pm+cell2mat(M(i,2)); %sommos a probabilidade dessa palavra
+    end
+    if ismember(M(i,1), h)==1 && M{i,1}(1)== 'o' %se existir uma palavra em M
+        po=po+cell2mat(M(i,2)); %somamos a probabilidade dessa palavra
+    end
+    if ismember(M(i,1), h)==1 && M{i,1}(1)== 'r' %se existir uma palavra em M
+        pr=pr+cell2mat(M(i,2)); %somamos a probabilidade dessa palavra
+    end
+end
+pt= pa+pm+po+pr;
+pa= pa/pt;
+pm= pm/pt;
+po= po/pt;
+pr= pr/pt;
 
 
 
