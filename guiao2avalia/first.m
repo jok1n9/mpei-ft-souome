@@ -29,11 +29,19 @@ for i=1: 5
     f(i,2)= M(pD-i+1,2); %guarda as primeiras 5 probabilidades
 end
 
+
 fid=fopen('wordlist-preao-20201103.txt');
 data=textscan(fid,'%s');
 fclose(fid);
-g= cell(10e5,1);
-g=data;
+g= data{1}(1:end);%abrir e ler o ficheiro para uma célula
+
+a=0;
+h=intersect(g, Mpu);%interseta g com as palavras geradas
+for i=1: length(Mpu)    
+    if ismember(M(i,1), h)==1%se existir uma palavra em M
+        a=a+cell2mat(M(i,2)); %somamos a probabilidade dessa palavra
+    end
+end
 
 
 
