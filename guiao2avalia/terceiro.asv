@@ -40,7 +40,7 @@ for i=1: length(Mpu)
         a=a+cell2mat(M(i,2)); %somamos a probabilidade dessa palavra
     end
 end
-intersect(h, M(1));
+
 sort(M(1));
 ca=1;
 pa=0;
@@ -59,7 +59,7 @@ while(Mpu{ca}(1)== 'o')
     po=cell2mat(M(ca,2))+po;
     ca=ca+1;
 end
-while(Mpu{ca}(1)== 'r'&& length(Mpu)~=i)
+while(Mpu{ca}(1)== 'r'||)
     pr=cell2mat(M(ca,2))+pr;
     ca=ca+1;
 end

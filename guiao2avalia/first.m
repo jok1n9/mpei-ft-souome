@@ -1,4 +1,4 @@
-
+n=4;
 m=[0   1/3 0   1/4 0; %r
    1/2 0   1/2 1/4   0; %o
    0   1/3 0   1/4 0; %m
@@ -10,7 +10,7 @@ palavra= basedados(crawl(m,randi(4),5));%cria um caminho pela matriz e passao pa
 
 a=cell(10e5, 1);%aloca espaço para 10e5 palavras em cell
 for i=1: 10e5   %ciclo cria e aloca 10e5 palavras no cell criado anterior
-    a{i}=basedados(crawl(m,randi(4),5)) ;
+    a{i}=basedados(crawl2(m,randi(4),5,n)) ;
 end
 pD= length(unique(a));  %número de palavras não repetidas
 Mpu= unique(a);         
@@ -62,10 +62,7 @@ function state = crawl2(H, first, last, n)%add n
             break;
         end
         state(end+1) = a;
-        d=d+1;%
-        if (state(end) == last || n==d)
-            break;
-        end
+        d=d+1;
     end
 end
 
