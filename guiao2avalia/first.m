@@ -4,32 +4,57 @@ m=[0   1/3 0   1/3 0; %r
    0   1/3 0   1/3 0; %m
    1/2 0   1/2 0   0; %a
    0   1/3 0   1/3 0]; %.
+%cria uma matriz de transição
+basedados= ['r','o','m','a',' '];%cria caracteres na mesma posição que na matriz
+palavra= basedados(crawl(m,randi(4),5));%cria um caminho pela matriz e passao para uma palavra
 
-wordnumb=crawl(m,1,5);
-basedados= ["r","o","m","a","."];
+a=cell(10e5, 1);%aloca espaço para 10e5 palavras em cell
+for i=1: 10e5   %ciclo cria e aloca 10e5 palavras no cell criado anterior
+    a{i}=basedados(crawl(m,randi(4),5)) ;
+end
+pD= length(unique(a));  %número de palavras não repetidas
+Mpu= unique(a);         
+[uc, ~, idc] = unique(a);
+counts= accumarray(idc, ones(size(idc)));
 
-for i=1: 10e5
-    wordnumb=crawl(m,1,5);
-    y{i}=basedados(wordnumb);
+M= cell(pD, 2);
+for i=1:pD
+    M(i,1)=Mpu(i);  %aloca as palavras não repetidas
+    M(i,2)= num2cell(counts(i)/10e5); %aloca a probabilidade de se repetirem no array original
+end
+f=cell(5,2);%5 palavras mais usadas e probabilidade
+M=sortrows(M,2); % ordena as probabilidades
+for i=1: 5 
+    f(i,1)= M(pD-i+1,1); %guarda aas primeiras 5 palavras
+    f(i,2)= M(pD-i+1,2); %guarda as primeiras 5 probabilidades
 end
 
-for i=1: 10e5
-    for u=i+1: 10e5
-        if(y{i}== y{u})
-            a{j}=
+%fid=fopen('wordlistpreao20201103.txt');
+%data=textscan(fid,'%f','headerlines',1);
+%fclose(fid);
+%width=data{1}(1:2:end);
+%height=data{1}(2:2:end);
+
+
+
+
+
+
+
+
+
+function state = crawl2(H, first, last, max)
+
+    state = [first];
+    d=1;
+    while (1)
+        state(end+1) = nextState(H, state(end));
+        d=d+1;
+        if (state(end) == last || max==d)
+            break;
         end
     end
-end    
-
-
-
-
-
-
-
-
-
-
+end
 
 
 
@@ -42,6 +67,7 @@ function state = crawl(H, first, last)
 % the sequence of states will be saved in the vector "state"
 % initially, the vector contains only the initial state:
     state = [first];
+    
 % keep moving from state to state until state "last" is reached:
     while (1)
         state(end+1) = nextState(H, state(end));
