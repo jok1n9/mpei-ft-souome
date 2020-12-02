@@ -1,4 +1,4 @@
-n=8;
+n=4;
 m=[0   0.3 0   0.3 0; %r
    0.3 0   0.3 0.1 0; %o
    0.1 0.2 0   0.2 0; %m
@@ -24,7 +24,7 @@ for i=1: 10e5   %ciclo cria e aloca 10e5 palavras no cell criado anterior
     else
         t=1;
     end 
-    a{i}=basedados(crawl(m,t,5)) ;
+    a{i}=basedados(crawl2(m,t,5,n)) ;
 end
 pD= length(unique(a));  %número de palavras não repetidas
 Mpu= unique(a);         

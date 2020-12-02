@@ -1,30 +1,17 @@
 n=8;
 m=[0   1/3 0   1/4 0; %r
-   1/2 0   1/2 1/4   0; %o
-   0   1/3 0   1/4 0; %m
-   1/2 0   1/2 0   0; %a
+   0.3 0   1/2 1/4 0; %o
+   0.1 1/3 0   1/4 0; %m
+   0.6 0   1/2 0   0; %a
    0   1/3 0   1/4 0]; %.
 %cria uma matriz de transição
 basedados= ['r','o','m','a',' '];%cria caracteres na mesma posição que na matriz
 palavra= basedados(crawl(m,randi(4),5));%cria um caminho pela matriz e passao para uma palavra
 
-pa= 0.3546;
-pm= 0.2598;
-po=0.3128 ;
-pr=0.0728;
-prand=rand();
-if(pa<prand)
-    t=1;
-elseif (pm+pa)<prand
-    t=2;
-elseif (pm+pa+po)<prand
-    t=3;
-else
-    t=4;
-end 
+
 a=cell(10e5, 1);%aloca espaço para 10e5 palavras em cell
 for i=1: 10e5   %ciclo cria e aloca 10e5 palavras no cell criado anterior
-    a{i}=basedados(crawl2(m,t,5,n)) ;
+    a{i}=basedados(crawl(m,randi(4),5)) ;
 end
 pD= length(unique(a));  %número de palavras não repetidas
 Mpu= unique(a);         
