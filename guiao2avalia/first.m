@@ -1,9 +1,9 @@
 
-m=[0   1/3 0   1/3 0; %r
-   1/2 0   1/2 0   0; %o
-   0   1/3 0   1/3 0; %m
+m=[0   1/3 0   1/4 0; %r
+   1/2 0   1/2 1/4   0; %o
+   0   1/3 0   1/4 0; %m
    1/2 0   1/2 0   0; %a
-   0   1/3 0   1/3 0]; %.
+   0   1/3 0   1/4 0]; %.
 %cria uma matriz de transição
 basedados= ['r','o','m','a',' '];%cria caracteres na mesma posição que na matriz
 palavra= basedados(crawl(m,randi(4),5));%cria um caminho pela matriz e passao para uma palavra
@@ -29,11 +29,11 @@ for i=1: 5
     f(i,2)= M(pD-i+1,2); %guarda as primeiras 5 probabilidades
 end
 
-%fid=fopen('wordlistpreao20201103.txt');
-%data=textscan(fid,'%f','headerlines',1);
-%fclose(fid);
-%width=data{1}(1:2:end);
-%height=data{1}(2:2:end);
+fid=fopen('wordlist-preao-20201103.txt');
+data=textscan(fid,'%s');
+fclose(fid);
+g= cell(10e5,1);
+g=data;
 
 
 
@@ -43,14 +43,19 @@ end
 
 
 
-function state = crawl2(H, first, last, max)
+
+function state = crawl2(H, first, last, n)%add n
 
     state = [first];
     d=1;
     while (1)
-        state(end+1) = nextState(H, state(end));
-        d=d+1;
-        if (state(end) == last || max==d)
+        a=nextState(H, state(end));
+        if (a== last || n==d)%stops the atribution of the last state to the word 
+            break;
+        end
+        state(end+1) = a;
+        d=d+1;%
+        if (state(end) == last || n==d)
             break;
         end
     end
@@ -70,10 +75,11 @@ function state = crawl(H, first, last)
     
 % keep moving from state to state until state "last" is reached:
     while (1)
-        state(end+1) = nextState(H, state(end));
-        if (state(end) == last)
+        a=nextState(H, state(end));
+        if a== last%stops the atribution of the last state to the word 
             break;
         end
+        state(end+1) = a;
     end
 end
 % Returning the next state
