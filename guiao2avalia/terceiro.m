@@ -45,18 +45,26 @@ pa=0;
 pm=0;
 pr=0;
 po=0;
-
+a=1;
+for i=1: length(g)
+    set_of_letters= 'amor';
+    word= g{i};
+    if min(ismember(word,set_of_letters)) 
+        j{a,1}=word;
+        a=a+1;
+    end
+end
 for i=1: length(Mpu)    
-    if ismember(M(i,1), h)==1 && M{i,1}(1)== 'a' %se existir uma palavra em M e a primeira letra for a
+    if ismember(M(i,1), j)==1 && M{i,1}(1)== 'a' %se existir uma palavra em M e a primeira letra for a
         pa=pa+cell2mat(M(i,2)); %somamos o numero de palavras começadas por a
     end
-    if ismember(M(i,1), h)==1 && M{i,1}(1)== 'm' %se existir uma palavra em M e a primeira letra for m
+    if ismember(M(i,1), j)==1 && M{i,1}(1)== 'm' %se existir uma palavra em M e a primeira letra for m
         pm=pm+cell2mat(M(i,2)); %somamos o numero de palavras começadas por m
     end
-    if ismember(M(i,1), h)==1 && M{i,1}(1)== 'o' %se existir uma palavra em M e a primeira letra for o
+    if ismember(M(i,1), j)==1 && M{i,1}(1)== 'o' %se existir uma palavra em M e a primeira letra for o
         po=po+cell2mat(M(i,2)); %somamos o numero de palavras começadas por o
     end
-    if ismember(M(i,1), h)==1 && M{i,1}(1)== 'r' %se existir uma palavra em M e a primeira letra for r
+    if ismember(M(i,1), j)==1 && M{i,1}(1)== 'r' %se existir uma palavra em M e a primeira letra for r
         pr=pr+cell2mat(M(i,2)); %somamos o numero de palavras começadas por r
     end
 end
