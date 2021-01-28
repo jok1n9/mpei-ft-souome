@@ -1,0 +1,1 @@
+d= readtable("ola.txt");
